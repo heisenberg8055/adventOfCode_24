@@ -34,7 +34,9 @@ func chk(arr []string, brr string) bool {
 	return false
 }
 
-func Help() int {
+var w [][]string
+
+func Help() (int, map[string][]string) {
 	var ans int = 0
 	r, arr := ReadFile()
 	mp := make(map[string][]string, 0)
@@ -62,8 +64,15 @@ func Help() int {
 		if add {
 			val, _ := strconv.Atoi(curr[n/2])
 			ans += val
+		} else {
+			w = append(w, curr)
 		}
 	}
 
-	return ans
+	return ans, mp
+}
+
+func Result() ([][]string, map[string][]string) {
+	_, mp := Help()
+	return w, mp
 }
