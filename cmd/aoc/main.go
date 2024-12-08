@@ -1,11 +1,9 @@
 package main
 
 import (
-	"fmt"
-
-	"github.com/heisenberg8055/adventOfCode_24/D5"
+	"github.com/heisenberg8055/adventOfCode_24/D6"
 )
 
 func main() {
-	fmt.Println(D5.Help2())
+	D6.ReadFile()
 }
