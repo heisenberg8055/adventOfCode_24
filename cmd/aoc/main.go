@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/heisenberg8055/adventOfCode_24/D6"
+	"github.com/heisenberg8055/adventOfCode_24/D12"
 )
 
 func main() {
-	D6.ReadFile()
+	D12.Help1()
 }
