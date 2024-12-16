@@ -2,7 +2,6 @@ package D16
 
 import (
 	"bufio"
-	"fmt"
 	"os"
 	"strings"
 )
@@ -37,23 +36,18 @@ func Help1() int {
 	for i := range vis {
 		temp := make([]int, n)
 		for i := range temp {
-			temp[i] = 100000
+			temp[i] = MaxInt
 		}
 		vis[i] = temp
 	}
 	vis[m-2][1] = 0
-	queue := make([]cord, 0)
-	queue = append(queue, cord{
-		x:   m - 2,
-		y:   1,
-		dir: 69,
-	})
-	for len(queue) > 0 {
-		temp := queue[0]
-		queue = queue[1:]
-		dx := temp.x
-		dy := temp.y
-		currDir := temp.dir
+	q := New[cord, int64](MaxHeap)
+	q.Put(cord{x: m - 2, y: 1, dir: 69}, int64(0))
+	for !q.IsEmpty() {
+		temp := q.Get()
+		dx := temp.Value.x
+		dy := temp.Value.y
+		currDir := temp.Value.dir
 		if dx > 0 && arr[dx-1][dy] != "#" {
 			var dist int
 			switch currDir {
@@ -68,7 +62,7 @@ func Help1() int {
 			}
 			if vis[dx-1][dy] > vis[dx][dy]+dist {
 				vis[dx-1][dy] = vis[dx][dy] + dist
-				queue = append(queue, cord{x: dx - 1, y: dy, dir: 'N'})
+				q.Put(cord{x: dx - 1, y: dy, dir: 'N'}, int64(vis[dx-1][dy]))
 			}
 		}
 		if dy > 0 && arr[dx][dy-1] != "#" {
@@ -85,7 +79,7 @@ func Help1() int {
 			}
 			if vis[dx][dy-1] > vis[dx][dy]+dist {
 				vis[dx][dy-1] = vis[dx][dy] + dist
-				queue = append(queue, cord{x: dx, y: dy - 1, dir: 'W'})
+				q.Put(cord{x: dx, y: dy - 1, dir: 'W'}, int64(vis[dx][dy-1]))
 			}
 		}
 		if dy < n-1 && arr[dx][dy+1] != "#" {
@@ -102,7 +96,7 @@ func Help1() int {
 			}
 			if vis[dx][dy+1] > vis[dx][dy]+dist {
 				vis[dx][dy+1] = vis[dx][dy] + dist
-				queue = append(queue, cord{x: dx, y: dy + 1, dir: 'E'})
+				q.Put(cord{x: dx, y: dy + 1, dir: 'E'}, int64(vis[dx][dy+1]))
 			}
 		}
 		if dx < m-1 && arr[dx+1][dy] != "#" {
@@ -119,16 +113,9 @@ func Help1() int {
 			}
 			if vis[dx+1][dy] > vis[dx][dy]+dist {
 				vis[dx+1][dy] = vis[dx][dy] + dist
-				queue = append(queue, cord{x: dx + 1, y: dy, dir: 'S'})
+				q.Put(cord{x: dx + 1, y: dy, dir: 'S'}, int64(vis[dx+1][dy]))
 			}
 		}
-	}
-
-	for i := 0; i < m; i++ {
-		for j := 0; j < n; j++ {
-			fmt.Print(vis[i][j], "\t")
-		}
-		fmt.Println()
 	}
 	return vis[1][n-2]
 }
