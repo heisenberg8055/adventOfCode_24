@@ -119,7 +119,7 @@ func Help1() int {
 			}
 			if vis[dx+1][dy] > vis[dx][dy]+dist {
 				vis[dx+1][dy] = vis[dx][dy] + dist
-				queue = append(queue, cord{x: dx + 1, y: dy, dir: 'W'})
+				queue = append(queue, cord{x: dx + 1, y: dy, dir: 'S'})
 			}
 		}
 	}
