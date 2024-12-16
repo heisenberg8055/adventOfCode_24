@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 
-	"github.com/heisenberg8055/adventOfCode_24/D12"
+	"github.com/heisenberg8055/adventOfCode_24/D7"
 )
 
 func main() {
-	fmt.Println(D12.Help2())
+	fmt.Println(D7.Help2())
 }
