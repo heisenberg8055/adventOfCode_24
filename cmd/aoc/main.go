@@ -1,9 +1,11 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/heisenberg8055/adventOfCode_24/D12"
 )
 
 func main() {
-	D12.Help1()
+	fmt.Println(D12.Help2())
 }
