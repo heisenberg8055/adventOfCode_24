@@ -7,5 +7,5 @@ import (
 )
 
 func main() {
-	fmt.Println(D8.Help1())
+	fmt.Println(D8.Help2())
 }

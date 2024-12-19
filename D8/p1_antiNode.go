@@ -2,7 +2,6 @@ package D8
 
 import (
 	"bufio"
-	"fmt"
 	"os"
 	"strings"
 )
@@ -57,7 +56,6 @@ func Help1() int {
 	for key := range vis {
 		dx := key.x
 		dy := key.y
-		fmt.Println(dx, dy)
 		if dx >= 0 && dx < m && dy >= 0 && dy < n {
 			ans++
 		}
